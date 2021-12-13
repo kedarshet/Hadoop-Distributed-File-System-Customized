@@ -11,7 +11,6 @@ To start file system:
 python3 start.py #config_file (optional)
 ```
 ### Edit config file for customization.
-<hr>
 
 
 |Attribute|Type|Description|
