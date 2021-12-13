@@ -1,6 +1,6 @@
-# Yet Another Hadoop
+# Customized Hadoop Distributed File System
 
-Yet Another Hadoop is a mini-HDFS setup on your system, complete with the architectural
+Hadoop DFS is a mini-HDFS setup on your system, complete with the architectural
 structure consisting of Data Nodes and Name Nodes and replication of data across nodes and
 capable of performing some of the important tasks a distributed file system performs, running
 HDFS commands as well as scheduling Hadoop jobs.
