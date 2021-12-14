@@ -28,22 +28,36 @@ def mapreduce(path_to_dataset,local_path_to_output,local_path_mapper,local_path_
     arguements=""
     for i in args:
         arguements+=str(i)+" "
-    with open(os.path.join(path_to_namenodes,'namenode.json'),'r') as f:
-        data = json.load(f)
+    try:
+        with open(os.path.join(path_to_namenodes,'namenode.json'),'r') as f:
+            data = json.load(f)
+    except:
+        print("Cannot access Namenode.")
+        return
     splits=data[fs_path+path_to_dataset]
     # print(len(splits))
     filename=path_to_dataset.split('/')
     filen=filename[-1].split('.')
-    with open('moutput.txt','w') as f1:
-        f1.write('')
+    try:
+        with open('moutput.txt','w') as f1:
+            f1.write('')
+     except:
+        print("Error in storing mapper output.")
+        return
     for i in range(1,len(splits)+1,2):
-        t1 = threading.Thread(target=mapping, args=(filen,i,splits,local_path_mapper,"output.txt",arguements))
-        t1.start()
-        if(i+1<len(splits)+1):
-            t2 = threading.Thread(target=mapping, args=(filen,i+1,splits,local_path_mapper,"output2.txt",arguements))
-            t2.start()
-        t1.join()
-        t2.join()
+        try:
+            t1 = threading.Thread(target=mapping, args=(filen,i,splits,local_path_mapper,"output.txt",arguements))
+            t1.start()
+            if(i+1<len(splits)+1):
+                t2 = threading.Thread(target=mapping, args=(filen,i+1,splits,local_path_mapper,"output2.txt",arguements))
+                t2.start()
+            t1.join()
+            try:
+                t2.join()
+            except:
+                pass
+        except:
+            print("Error was caused during Multithreading.")
     try:
         os.system("cat moutput.txt | sort -k 1,1 | python3 "+local_path_reducer+' >'+local_path_to_output)
         os.remove("output.txt")
