@@ -21,8 +21,8 @@ python3 start.py #config_file (optional)
 ## Edit config file for customization.
 
 
-|Attribute|Type|Description|
-|:--------|----|-----------|
+|Attribute |Type|Description|
+|:---------|----|-----------|
 |``Block Size            ``|Int|Indicates block size to split files in MegaBytes.</br>
 |``Path To Datanodes      ``|Str|Absolute path to create Data Nodes.</br>
 |``Path To Namenodes      ``|Str|Absolute path to create Name Node and secondary Name Node.</br>
