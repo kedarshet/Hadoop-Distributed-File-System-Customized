@@ -1,2 +1,2 @@
-pip install filesplit
-pip install pathlib
+filesplit
+pathlib
